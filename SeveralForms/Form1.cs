@@ -18,12 +18,22 @@ namespace SeveralForms
         }
         private RichTextBox richTextBoxB;
         private RichTextBox richTextBoxC;
-        private Form refFromB = new Form();
-        private Form refFromC = new Form();
+        private PictureBox pictureBoxB;
+        private PictureBox pictureBoxC;
+        private Form refForm = new Form();
+
+        // Хотел наптсать метод для создания форм, кнопок, richBox-ов и тд,
+        // в дальнейшем раскидать всё по разным методам, что-то может в отдельный
+        // класс вынести, но наткнулся на препядсвие, как подписать таким образом 
+        // создпнные кнопки на события.
+        // Как я понимаю в данном коде нарушены все принцыпы ООП. Всё свалено в одну кучу.
+        // Если будет время напрвте на путь истенный)))
+        // 
         //private void createForm(string text, string where1, string where2)
         //{
         //    Form newForm = new Form();
         //    newForm.Text = text;
+        //    refForm = newForm;
         //    var SizeFirst = SystemInformation.PrimaryMonitorMaximizedWindowSize;
         //    newForm.MaximumSize = new Size(SizeFirst.Width / 6, SizeFirst.Height / 3);
         //    newForm.MinimumSize = new Size(SizeFirst.Width / 6, SizeFirst.Height / 3);
@@ -38,10 +48,9 @@ namespace SeveralForms
         //    pointTextBox.Y = 33;
         //    richtextBox.Location = pointTextBox;
 
-        //    Button buttonWhere1 = new Button();
+        //    buttonWhere1 = new Button();
         //    buttonWhere1.Width = 90;
         //    newForm.Controls.Add(buttonWhere1);
-
         //    buttonWhere1.Text = where1;
 
         //    Point pointbuttonWhere1 = buttonWhere1.Location;
@@ -49,12 +58,9 @@ namespace SeveralForms
         //    pointbuttonWhere1.Y = 5;
         //    buttonWhere1.Location = pointbuttonWhere1;
 
-        //    Button buttonWhere2 = new Button();
+        //    buttonWhere2 = new Button();
         //    buttonWhere2.Width = 90;
         //    newForm.Controls.Add(buttonWhere2);
-        //    buttonWhere1.MouseClick += buttonWhereA_MouseClick;
-        //    buttonWhere1.MouseClick += buttonWhereB_MouseClick;
-        //    buttonWhere2.MouseClick += buttonWhereC_MouseClick;
         //    buttonWhere2.Text = where2;
 
         //    Point pointbuttonWhere2 = buttonWhere2.Location;
@@ -62,26 +68,34 @@ namespace SeveralForms
         //    pointbuttonWhere2.Y = 5;
         //    buttonWhere2.Location = pointbuttonWhere2;
 
+        //    //buttonWhere1.MouseClick += buttonBWhereA_MouseClick;
+        //    //buttonWhere1.MouseClick += buttonBWhereC_MouseClick;
+
+        //    //buttonWhere2.MouseClick += buttonCWhereA_MouseClick;
+        //    //buttonWhere2.MouseClick += buttonCWhereB_MouseClick;
+
         //    newForm.Show();
         //}
 
         private void FormBase_Load(object sender, EventArgs e)
         {
-            var SizeFirst = SystemInformation.PrimaryMonitorMaximizedWindowSize;
-            this.MaximumSize = new Size(SizeFirst.Width / 5, SizeFirst.Height / 2);
-            this.MinimumSize = new Size(SizeFirst.Width / 5, SizeFirst.Height / 2);
-            this.Location = new Point((int)((double)SizeFirst.Width / 2.5), (int)((double)SizeFirst.Height /3.5));
+            var _size = SystemInformation.PrimaryMonitorMaximizedWindowSize;
+            this.MaximumSize = new Size(_size.Width / 5, _size.Height / 2);
+            this.MinimumSize = new Size(_size.Width / 5, _size.Height / 2);
+            this.Location = new Point((int)((double)_size.Width / 2.5), (int)((double)_size.Height /3.5));
         }
         private void buttonCreateFormB_MouseClick(object sender, MouseEventArgs e)
         {
             //createForm("Форма \"B\"", "На форму \"А\"", "На форму \"C\"");
+            //buttonWhere1.MouseClick += buttonBWhereA_MouseClick;
+            //buttonWhere1.MouseClick += buttonBWhereC_MouseClick;
+            var _size = SystemInformation.PrimaryMonitorMaximizedWindowSize;
             Form newFormB = new Form();
             newFormB.Text = "Форма \"B\"";
-            refFromB = newFormB;
-            var SizeFirst = SystemInformation.PrimaryMonitorMaximizedWindowSize;
-            newFormB.MaximumSize = new Size(SizeFirst.Width / 6, SizeFirst.Height / 3);
-            newFormB.MinimumSize = new Size(SizeFirst.Width / 6, SizeFirst.Height / 3);
-
+            // refFromC = newFormC;
+            var Size = SystemInformation.PrimaryMonitorMaximizedWindowSize;
+            newFormB.MaximumSize = new Size(Size.Width / 6, (int)((double)Size.Height / 2.3));
+            newFormB.MinimumSize = new Size(Size.Width / 6, (int)((double)Size.Height / 2.3));
             richTextBoxB = new RichTextBox();
             richTextBoxB.Width = 221;
             richTextBoxB.Height = 200;
@@ -95,7 +109,6 @@ namespace SeveralForms
             Button buttonWhereA = new Button();
             buttonWhereA.Width = 90;
             newFormB.Controls.Add(buttonWhereA);
-
             buttonWhereA.MouseClick += buttonBWhereA_MouseClick;
             buttonWhereA.Text = "На форму \"А\"";
 
@@ -108,28 +121,40 @@ namespace SeveralForms
             buttonWhereC.Width = 90;
             newFormB.Controls.Add(buttonWhereC);
             buttonWhereC.MouseClick += buttonBWhereC_MouseClick;
-            buttonWhereC.Text = "На форму \"С\"";
+            buttonWhereC.Text = "На форму \"C\"";
 
             Point pointbuttonWhereC = buttonWhereC.Location;
             pointbuttonWhereC.X = 140;
             pointbuttonWhereC.Y = 5;
             buttonWhereC.Location = pointbuttonWhereC;
 
-            newFormB.Show();
+            pictureBoxB = new PictureBox();
+            pictureBoxB.Width = 97;
+            pictureBoxB.Height = 69;
+            pictureBoxB.SizeMode = PictureBoxSizeMode.Zoom;
+            Bitmap MyImage = new Bitmap("щенок.jpg");
+            pictureBoxB.Image = MyImage;
+            newFormB.Controls.Add(pictureBoxB);
 
+            Point pointPictureBoxB = pictureBoxB.Location;
+            pointPictureBoxB.X = 75;
+            pointPictureBoxB.Y = 245;
+            pictureBoxB.Location = pointPictureBoxB;
+
+            newFormB.Show();
         }
 
         private void buttonCreateFormC_MouseClick(object sender, MouseEventArgs e)
         {
-            // refWhereFrom = null;
             //createForm("Форма \"C\"", "На форму \"А\"", "На форму \"В\"");
+            //buttonWhere2.MouseClick += buttonCWhereA_MouseClick;
+            //buttonWhere2.MouseClick += buttonCWhereB_MouseClick;
             Form newFormC = new Form();
             newFormC.Text = "Форма \"C\"";
-            refFromC = newFormC;
+            // refFromC = newFormC;
             var Size = SystemInformation.PrimaryMonitorMaximizedWindowSize;
-            newFormC.MaximumSize = new Size(Size.Width / 6, Size.Height / 3);
-            newFormC.MinimumSize = new Size(Size.Width / 6, Size.Height / 3);
-
+            newFormC.MaximumSize = new Size(Size.Width / 6, (int)((double)Size.Height / 2.3));
+            newFormC.MinimumSize = new Size(Size.Width / 6, (int)((double)Size.Height / 2.3));
             richTextBoxC = new RichTextBox();
             richTextBoxC.Width = 221;
             richTextBoxC.Height = 200;
@@ -162,33 +187,54 @@ namespace SeveralForms
             pointbuttonWhereB.Y = 5;
             buttonWhereB.Location = pointbuttonWhereB;
 
+            pictureBoxC = new PictureBox();
+            pictureBoxC.Width = 97;
+            pictureBoxC.Height = 69;
+            pictureBoxC.SizeMode = PictureBoxSizeMode.Zoom;
+            Bitmap MyImage2 = new Bitmap("щенки.jpg");
+            pictureBoxC.Image = MyImage2;
+            newFormC.Controls.Add(pictureBoxC);
+
+            Point pointPictureBoxC = pictureBoxC.Location;
+            pointPictureBoxC.X = 75;
+            pointPictureBoxC.Y = 245;
+            pictureBoxC.Location = pointPictureBoxC;
+
             newFormC.Show();
         }
         private void buttonBWhereA_MouseClick(object sender, MouseEventArgs e)
         {
             richTextBoxA.Text = richTextBoxB.Text;
+            pictureBoxA.Image = pictureBoxB.Image;
+
         }
         private void buttonBWhereC_MouseClick(object sender, MouseEventArgs e)
         {
             richTextBoxC.Text = richTextBoxB.Text;
+            pictureBoxC.Image = pictureBoxB.Image;
         }
         private void buttonCWhereA_MouseClick(object sender, MouseEventArgs e)
         {
+
             richTextBoxA.Text = richTextBoxC.Text;
+            pictureBoxA.Image = pictureBoxC.Image;
         }
         private void buttonCWhereB_MouseClick(object sender, MouseEventArgs e)
         {
             richTextBoxB.Text = richTextBoxC.Text;
+            pictureBoxB.Image = pictureBoxC.Image;
         }
 
         private void buttonToFormB_MouseClick(object sender, MouseEventArgs e)
         {
             richTextBoxB.Text = richTextBoxA.Text;
+            pictureBoxB.Image = pictureBoxA.Image;
         }
 
         private void buttonToFormC_MouseClick(object sender, MouseEventArgs e)
         {
             richTextBoxC.Text = richTextBoxA.Text;
+            pictureBoxC.Image = pictureBoxA.Image;
         }
 
         

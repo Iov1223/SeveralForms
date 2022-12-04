@@ -33,8 +33,8 @@
             this.richTextBoxA = new System.Windows.Forms.RichTextBox();
             this.buttonToFormB = new System.Windows.Forms.Button();
             this.buttonToFormC = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureBoxA = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxA)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonCreateFormB
@@ -85,22 +85,22 @@
             this.buttonToFormC.UseVisualStyleBackColor = true;
             this.buttonToFormC.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonToFormC_MouseClick);
             // 
-            // pictureBox1
+            // pictureBoxA
             // 
-            this.pictureBox1.Image = global::SeveralForms.Properties.Resources.щенок2;
-            this.pictureBox1.Location = new System.Drawing.Point(266, 58);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(97, 69);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxA.Image = global::SeveralForms.Properties.Resources.щенок2;
+            this.pictureBoxA.Location = new System.Drawing.Point(266, 58);
+            this.pictureBoxA.Name = "pictureBoxA";
+            this.pictureBoxA.Size = new System.Drawing.Size(97, 69);
+            this.pictureBoxA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxA.TabIndex = 5;
+            this.pictureBoxA.TabStop = false;
             // 
             // FormBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(408, 450);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBoxA);
             this.Controls.Add(this.buttonToFormC);
             this.Controls.Add(this.buttonToFormB);
             this.Controls.Add(this.richTextBoxA);
@@ -109,7 +109,7 @@
             this.Name = "FormBase";
             this.Text = "Форма \"А\"";
             this.Load += new System.EventHandler(this.FormBase_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxA)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -121,7 +121,7 @@
         private System.Windows.Forms.RichTextBox richTextBoxA;
         private System.Windows.Forms.Button buttonToFormB;
         private System.Windows.Forms.Button buttonToFormC;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxA;
     }
 }
 
